@@ -17,7 +17,7 @@ namespace TipCalculator
             InitializeComponent();
         }
 
-        private void calculateButton_Click(object sender, EventArgs e)
+        private void calculate()
         {
             Double.TryParse(billTxtBox.Text, out double billAmt);
             Double.TryParse(TipPrcntTxtBox.Text, out double tipPrcnt);
@@ -29,25 +29,17 @@ namespace TipCalculator
 
         private void billTxtBox_TextChanged(object sender, EventArgs e)
         {
-            if(double.TryParse(billTxtBox.Text, out _))
+            if(double.TryParse(billTxtBox.Text, out _) && double.TryParse(TipPrcntTxtBox.Text, out _))
             {
-                calculateButton.Enabled = true;
-            }
-            else
-            {
-                calculateButton.Enabled = false;
+                calculate();
             }
         }
 
         private void TipPrcntTxtBox_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(TipPrcntTxtBox.Text, out _))
+            if (double.TryParse(billTxtBox.Text, out _) && double.TryParse(TipPrcntTxtBox.Text, out _))
             {
-                calculateButton.Enabled = true;
-            }
-            else
-            {
-                calculateButton.Enabled = false;
+                calculate();
             }
         }
     }
